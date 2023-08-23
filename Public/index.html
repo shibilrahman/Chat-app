@@ -3,33 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inter Chat App</title>
+  <title>Chatter</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <ul id="messages"></ul>
-  <form id="form" action="">
-    <input id="input" autocomplete="off" /><button>Send</button>
-  </form>
-
+  <div class="chat-container">
+    <div class="sidebar">
+      <div class="profile">
+        <h2 id="username">Shibil</h2>
+      </div>
+      <ul class="contacts">
+        <!-- Contact list will be created dynamically -->
+      </ul>
+    </div>
+    <div class="chat">
+      <div class="chat-header">
+        <h2 id="contact-name">Contact Name</h2>
+      </div>
+      <ul class="messages">
+        <!-- Messages will be added dynamically using JavaScript -->
+      </ul>
+      <div class="message-input">
+        <input type="text" id="message" placeholder="Type a message...">
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+  </div>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(function () {
-      var socket = io();
-      var $form = $('#form');
-      var $input = $('#input');
-      var $messages = $('#messages');
-
-      $form.submit(function() {
-        socket.emit('chat message', $input.val());
-        $input.val('');
-        return false;
-      });
-
-      socket.on('chat message', function(msg) {
-        $messages.append($('<li>').text(msg));
-      });
-    });
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
